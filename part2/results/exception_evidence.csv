@@ -1,0 +1,44 @@
+check,source_line,order_id,merchant_id,created_at_raw,payment_type_raw,status_raw,order_value_raw,treatment
+payment_label_normalized,3,ORD0026383,M102,2026-08-19T23:59:30Z,Cash on Delivery,rto,492.02,Canonicalize exact known COD spelling variants
+utc_ist_week_boundary,6,ORD0015474,M107,2026-08-09T23:46:31Z,cod,rto,895.23,Group by IST date
+suspected_test_merchant,10,ORD0057321,M_TEST_01,2026-09-19T04:52:47Z,cod,cancelled,425.96,Retain literal; also report exclusion sensitivity
+nonfinal_cod,10,ORD0057321,M_TEST_01,2026-09-19T04:52:47Z,cod,cancelled,425.96,Exclude from COD final-outcome denominator
+payment_label_normalized,17,ORD0015804,M112,2026-08-10T07:48:13Z,Cash on Delivery,pending,1979.61,Canonicalize exact known COD spelling variants
+nonfinal_cod,17,ORD0015804,M112,2026-08-10T07:48:13Z,Cash on Delivery,pending,1979.61,Exclude from COD final-outcome denominator
+payment_label_normalized,23,ORD0011455,M113,2026-08-06T17:27:55Z,Cash on Delivery,rto,1406.97,Canonicalize exact known COD spelling variants
+status_label_normalized,31,ORD0024873,M119,2026-08-18T02:04:08Z,cod,delivered ,1341.0,"Trim whitespace, canonicalize casing/underscore"
+nonfinal_cod,33,ORD0052374,M108,2026-09-12T20:02:11Z,cod,in_transit,1036.45,Exclude from COD final-outcome denominator
+status_label_normalized,44,ORD0083605,M112,2026-10-14T06:05:42Z,cod,RTO,1065.71,"Trim whitespace, canonicalize casing/underscore"
+suspected_test_merchant,45,ORD0050879,M_TEST_01,2026-09-10T22:57:10Z,cod,rto,660.41,Retain literal; also report exclusion sensitivity
+status_label_normalized,52,ORD0003757,M109,2026-07-30T12:50:28Z,upi, Delivered ,671.3,"Trim whitespace, canonicalize casing/underscore"
+status_label_normalized,54,ORD0063468,M116,2026-09-24T19:36:25Z,cod, Delivered ,892.98,"Trim whitespace, canonicalize casing/underscore"
+status_label_normalized,56,ORD0078705,M120,2026-10-09T04:24:58Z,cod, Delivered ,1085.6,"Trim whitespace, canonicalize casing/underscore"
+payment_label_normalized,58,ORD0023049,M105,2026-08-17T13:23:17Z,COD,cancelled,1296.01,Canonicalize exact known COD spelling variants
+nonfinal_cod,58,ORD0023049,M105,2026-08-17T13:23:17Z,COD,cancelled,1296.01,Exclude from COD final-outcome denominator
+utc_ist_week_boundary,59,ORD0015690,M110,2026-08-09T21:12:56Z,cod,cancelled,1022.26,Group by IST date
+nonfinal_cod,59,ORD0015690,M110,2026-08-09T21:12:56Z,cod,cancelled,1022.26,Exclude from COD final-outcome denominator
+payment_label_normalized,66,ORD0031784,M101,2026-08-25T16:17:22Z,Cash on Delivery,in_transit ,1355.88,Canonicalize exact known COD spelling variants
+suspected_test_merchant,85,ORD0039136,M_TEST_01,2026-08-31T05:56:59Z,cod,rto,1118.93,Retain literal; also report exclusion sensitivity
+utc_ist_week_boundary,177,ORD0074298,M116,2026-10-04T19:50:55Z,upi,delivered,903.35,Group by IST date
+suspected_test_merchant,182,ORD0091547,M_TEST_01,2026-10-21T05:54:51Z,cod,pending,2586.34,Retain literal; also report exclusion sensitivity
+suspected_test_merchant,240,ORD0017413,M_TEST_02,2026-08-11T10:58:34Z,cod,rto,1102.63,Retain literal; also report exclusion sensitivity
+non_cod_rto,287,ORD0076751,M122,2026-10-06T21:56:41Z,netbanking, Rto ,1462.57,Legitimate candidate return; outside COD scope
+utc_ist_week_boundary,310,ORD0023228,M108,2026-08-16T20:53:02Z,upi,delivered,1255.83,Group by IST date
+non_cod_rto,327,ORD0007240,M115,2026-08-02T04:16:05Z,upi,rto,1153.92,Legitimate candidate return; outside COD scope
+utc_ist_week_boundary,336,ORD0081888,M119,2026-10-11T19:17:11Z,cod, Delivered ,1985.79,Group by IST date
+non_cod_rto,408,ORD0095663,M118,2026-10-25T13:50:25Z,card,rto,426.5,Legitimate candidate return; outside COD scope
+non_cod_rto,427,ORD0015729,M111,2026-08-10T18:06:11Z,upi,rto,1347.76,Legitimate candidate return; outside COD scope
+non_cod_rto,439,ORD0057085,M119,2026-09-19T15:02:18Z,upi,rto,320.53,Legitimate candidate return; outside COD scope
+missing_timestamp,522,ORD0041700,M109,,netbanking,delivered,3364.08,Store totals only; exclude from weekly
+missing_timestamp,1294,ORD0025609,M108,,cod,cancelled,1250.66,Store totals only; exclude from weekly
+missing_timestamp,1458,ORD0065163,M104,,cod, Rto ,1921.71,Store totals only; exclude from weekly
+missing_timestamp,1517,ORD0020080,M112,,upi,cancelled,1227.52,Store totals only; exclude from weekly
+missing_timestamp,1572,ORD0089159,M116,,cod,cancelled,2165.63,Store totals only; exclude from weekly
+exact_duplicate,3998,ORD0071071,M118,2026-10-02T10:49:25Z,cod,rto,1235.06,Keep one occurrence
+exact_duplicate,4862,ORD0065742,M118,2026-09-27T07:18:08Z,upi,rto,1201.57,Keep one occurrence
+exact_duplicate,5922,ORD0042713,M108,2026-09-04T02:18:26Z,netbanking,delivered,1957.84,Keep one occurrence
+exact_duplicate,6035,ORD0092603,M122,2026-10-22T05:08:48Z,upi,delivered,1952.25,Keep one occurrence
+exact_duplicate,6182,ORD0005102,M114,2026-07-31T06:16:58Z,netbanking,delivered,1238.77,Keep one occurrence
+high_order_value,15845,ORD0031256,M112,2026-08-24T05:03:24Z,cod,rto,9999999,Flag only; do not drop from count-based metric
+high_order_value,39344,ORD0030525,M120,2026-08-23T03:06:51Z,upi,delivered,9999999,Flag only; do not drop from count-based metric
+high_order_value,67881,ORD0039939,M118,2026-09-01T17:23:02Z,cod,delivered,9999999,Flag only; do not drop from count-based metric

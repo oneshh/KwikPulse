@@ -1,0 +1,8 @@
+scenario,description,returned_cod,delivered_cod,final_cod,return_rate_pct,change_vs_primary_percentage_points,final_orders_change_vs_primary,decision_note
+A,"Naive case-sensitive, no deduplication",11289,26178,37467,30.1305,-0.0684,-10197,Illustrates missing COD/status variants; not a recommended answer.
+B,"Normalized labels, no deduplication",14601,33751,48352,30.1973,-0.0016,688,Duplicates still vote more than once.
+C,"Primary: unique orders, all merchant IDs",14394,33270,47664,30.1989,+0.0000,0,Literal assignment answer; undated final COD orders retained for merchant totals.
+D,Sensitivity: exclude named test IDs,13108,33103,46211,28.3655,-1.8334,-1453,Business scenario only; test classification is not verified.
+E,Sensitivity: dated orders only,14339,33175,47514,30.1785,-0.0204,-150,Quantifies missing-date impact on overall store-rate calculation.
+F,Sensitivity: non-test and dated,13055,33009,46064,28.3410,-1.8579,-1600,Combines the two optional exclusions; not the literal assignment.
+G,Sensitivity: dated AND within requested IST period,14339,33175,47514,30.1785,-0.0204,-150,Checks scope drift if future files include out-of-range records.

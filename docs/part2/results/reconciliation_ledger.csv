@@ -1,0 +1,11 @@
+stage,count,treatment
+Raw CSV source rows,97378,"Input rows, not unique orders"
+Missing order ID rows,0,Quarantined before identity grouping
+Exact duplicate excess rows,1439,Removed from counts
+All rows of conflicting IDs,0,"Quarantined, not arbitrarily selected"
+Unique rows with missing merchant,0,Quarantined from merchant+weekly metrics
+Usable distinct orders,95939,Must reconcile: raw minus preceding 4 exclusion stages
+COD with final outcome,47664,Primary ranking denominator; includes undated
+COD with final outcome AND created in requested IST period,47514,Weekly denominator; excludes undated and out-of-period
+Undated final-outcome COD,150,"In ranking, not weekly trends"
+COD nonfinal outcomes,7799,Outside final-outcome denominator; not bad records

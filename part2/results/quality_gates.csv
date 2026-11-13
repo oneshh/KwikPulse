@@ -1,0 +1,7 @@
+assertion,result,detail
+Primary metric reconciles to source,PASS,Recompute via Order.final_cod independently of sensitivity output
+Raw row count reduction cannot inflate primary denominator,PASS,Deduplication must not increase the number of final outcomes
+Merchant-week matrix sums to weekly output,PASS,Every store-week row reconciles to all-store weekly totals
+All dated final COD records assigned to exactly one week,PASS,Undated/out-of-period final COD records cannot be assigned to a requested week
+No rate with a zero denominator,PASS,"An undefined rate is empty, never 0%"
+Scope invariant: test ID exclusion never adds records,PASS,Secondary production interpretation must be a subset

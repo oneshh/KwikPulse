@@ -1,0 +1,25 @@
+severity,check,affected_count,treatment
+HIGH,Duplicate order_id records,1439,Remove exact duplicate extra rows; one vote per distinct order_id.
+HIGH,Conflicting records for the same order_id,0,"Quarantine all versions of conflicting IDs, never pick an arbitrary winner."
+HIGH,Missing created_at,287,Exclude from weekly trend; include in all-time store rank if payment/status/merchant are valid.
+HIGH,Invalid or unzoned created_at,0,Same treatment as undated; warn separately.
+HIGH,Zero-order days across all stores (IST),2,Flag affected weeks as incomplete; do not assume zero real-world demand.
+HIGH,Likely test merchants,2,Publish literal all-merchant results AND separate production-only sensitivity; do not silently drop.
+HIGH,Missing delivery/return event-time columns (schema fields),2,Cannot attribute actual return events to their occurrence week; report created-at cohorts only.
+HIGH,Missing extract/as-of timestamp (schema field),1,Cannot independently establish outcome maturity or when statuses were observed.
+MEDIUM,No authoritative test/production store flag (schema field),1,Test exclusion is an explicitly labelled sensitivity based only on merchant ID patterns.
+MEDIUM,Status labels needing normalization,11234,"Strip whitespace and standardize case; RTO maps to returned, delivered maps to delivered."
+MEDIUM,Payment labels needing normalization,6740,"Map cod, COD and Cash on Delivery to COD; ignore non-COD for the requested metric."
+MEDIUM,Order weeks changed by UTC to IST conversion,2990,Convert timestamp to Asia/Kolkata before Monday-to-Sunday grouping.
+MEDIUM,COD orders with non-final status,7799,"Exclude pending, in_transit and cancelled from the denominator."
+MEDIUM,Merchants below 200 final-outcome COD orders,1,"Show in store audit table, but disqualify from top three."
+LOW,"Suspicious order_value >= 1,000,000",3,"Flag as possible sentinel/outlier; rate counts orders, never values, so retain."
+INFO,RTO records with non-COD payment,1073,Legitimate possible prepaid returns; exclude by COD-only definition (not flagged invalid).
+INFO,Undated final-outcome COD orders,150,Included in store lifetime rankings; cannot be assigned to a specific week.
+INFO,Unknown payment categories,0,Exclude from COD metric and flag for mapping review.
+INFO,Unknown outcome categories,0,Exclude from final-outcome denominator and flag for mapping review.
+INFO,Missing order identifiers (rows),0,Cannot reliably deduplicate; exclude and flag.
+INFO,Missing merchant identifiers (unique orders),0,Exclude from merchant and weekly report and flag.
+INFO,Timestamps outside declared assignment period,0,Exclude from specified weekly period; leave in all-time ranking with disclosure.
+INFO,Invalid order_value,0,Flag but keep record in count-based return metric.
+INFO,Nonpositive order_value,0,Flag but keep record in count-based return metric.

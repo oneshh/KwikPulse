@@ -1,0 +1,14 @@
+{
+  "source_sha256": "45c370099f3c735898cdd199575c0ff7dd29de2dd9780cad0e397169bb8ace16",
+  "expected_period_ist": [
+    "2026-07-27",
+    "2026-10-25"
+  ],
+  "primary_returned_cod": 14394,
+  "primary_final_cod": 47664,
+  "extra_reconciliation_checks_passed": 6,
+  "evidence_rows_provided": 43,
+  "merchant_week_groups": 338,
+  "sensitivity_scenarios": 7,
+  "business_readiness": "NEEDS UPSTREAM VALIDATION: ingestion gap, test merchants, and unknown snapshot/event times"
+}
