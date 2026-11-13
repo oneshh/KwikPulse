@@ -14,12 +14,35 @@ import requests
 DATA_FILE = Path("docs/data/articles.json")
 STATUS_FILE = Path("docs/data/status.json")
 COMPANIES = {
-    "GoKwik": '"GoKwik"',
-    "Shopflo": '"Shopflo"',
+    "GoKwik": '"GoKwik" (checkout OR ecommerce OR payments)',
+    "Shopflo": '"Shopflo" (checkout OR ecommerce OR payments)',
     "Simpl": '"Simpl" (checkout OR payments OR fintech)',
-    "Razorpay Magic Checkout": '"Razorpay Magic Checkout"',
+    "Razorpay Magic Checkout": '"Razorpay" "Magic Checkout"',
 }
 NEWS_ENDPOINT = "https://news.google.com/rss/search"
+def is_relevant(company, title):
+    title = title.lower()
+
+    if company == "Razorpay Magic Checkout":
+        return (
+            "razorpay" in title
+            and "magic checkout" in title
+        )
+
+    if company == "GoKwik":
+        return "gokwik" in title
+
+    if company == "Shopflo":
+        return "shopflo" in title
+
+    if company == "Simpl":
+        return (
+            "simpl" in title
+            and any(word in title for word in
+                    ["checkout", "payment", "fintech", "pay later"])
+        )
+
+    return False
 
 
 def load_existing():
@@ -75,6 +98,8 @@ def main():
                 title = re.sub(r"\s+", " ", entry.get("title", "")).strip()
                 publication = parse_date(entry)
                 if not (link and title and publication):
+                    continue
+                if not is_relevant(company, title):
                     continue
                 valid_count += 1
                 key = article_key(title, link)
