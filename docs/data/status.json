@@ -1,7 +1,7 @@
 {
-  "last_successful_run": "2026-11-13T11:34:18.590555+00:00",
-  "fetched_this_run": 140,
-  "valid_this_run": 140,
-  "unique_articles_stored": 143,
+  "last_successful_run": "2026-11-13T11:50:32.052453+00:00",
+  "fetched_this_run": 122,
+  "valid_this_run": 95,
+  "unique_articles_stored": 170,
   "collection_method": "Google News RSS search; not an exhaustive media census"
 }
