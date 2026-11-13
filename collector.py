@@ -86,6 +86,20 @@ def main():
     if os.getenv("SIMULATE_EMPTY") == "1":
         raise RuntimeError("Test alert: simulated empty source results")
     existing = load_existing()
+    
+    # Revalidate previously stored article-company associations.
+    for key, article in list(existing.items()):
+        valid_companies = [
+            company
+            for company in article.get("companies", [])
+            if is_relevant(company, article.get("title", ""))
+        ]
+    
+        if valid_companies:
+            article["companies"] = valid_companies
+        else:
+            del existing[key]
+
     fetched_count = 0
     valid_count = 0
     with requests.Session() as session:
