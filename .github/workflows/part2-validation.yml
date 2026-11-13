@@ -1,0 +1,48 @@
+# Read-only validation: does not replace the Part 1 news collector or Pages workflow.
+name: Part 2 | COD Data Quality Validation
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'part2/**'
+      - 'docs/part2/**'
+      - '.github/workflows/part2-validation.yml'
+  pull_request:
+    paths:
+      - 'part2/**'
+      - 'docs/part2/**'
+      - '.github/workflows/part2-validation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit-and-reconcile:
+    name: Recalculate, test, reconcile, compare outputs
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run 35 synthetic edge-case tests
+        run: python3 -m unittest discover -s part2/tests -v
+      - name: Recalculate analysis, audit, and RCA evidence
+        run: python3 part2/analyze_orders.py --input part2/orders.csv --output part2/results
+      - name: Verify every week and merchant independently using SQLite
+        run: python3 part2/verify_with_sqlite.py --input part2/orders.csv --output part2/results
+      - name: Recreate the GitHub Pages report
+        run: python3 part2/publish_dashboard.py
+      - name: Ensure published artifacts match their reproducible source
+        shell: bash
+        run: |
+          if [[ -n "$(git status --porcelain --untracked-files=all -- part2/results part2/index.html docs/part2)" ]]; then
+            echo "::error::Generated Part 2 reports differ from committed reports. Re-run analyze_orders.py and publish_dashboard.py, then commit all changed outputs."
+            git status --short -- part2/results part2/index.html docs/part2
+            exit 1
+          fi
+          echo "All Part 2 reports and dashboard assets reproduce exactly."
